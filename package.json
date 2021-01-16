@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/sp-amm/projectthree/issues"
   },
-  "homepage": "https://github.com/sp-amm/projectthree#readme"
+  "homepage": "https://github.com/sp-amm/projectthree#readme",
+  "dependencies": {
+    "mongoose": "^5.11.12",
+    "uuid": "^8.3.2"
+  }
 }
