@@ -1,48 +1,26 @@
-const { urlencoded } = require("express");
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const uuidv4 = require("uuid/v4")
+//const uuidv4 = require("uuid")
 
 const BookSchema = new Schema({
-  book : [{
-    title: { type: String, required: true },
+    title: { type: String},
     datepublished: { type: Date, default: Date.now },
-    publisher: { type: String, required: true },
-    ISBN: { type: String, required: true }, 
-    keywords: {Array, requied: true },
-    blurb: { type: String, required: true },
-    coverURL: {type: urlencoded },
+    publisher: { type: String },
+    ISBN: { type: String }, 
+    keywords: {Array},
+    blurb: { type: String},
+    coverURL: {type: String },
     condition: {type: Number },
-    price: {type: Number, required:true },
-    postage: {type: Number, required: true },
-    available: {type: Boolean, default:true },
-  }],
-  author: [{
-    name: { type: String, required: true },
-    bio: { type: String,},
-    genre: {Array},
-  }],
-  genre: [{
-    type: { type: String, required: true },
-  }],
-  user:[{
-    userID: {uuid4()},
-    username:{type:String},
-    password:{type:String},
-    name: {type:String},
-    email: {type:String},
-    address: [{
-      aptno: {type:String},
-      streetno: {type:String},
-      streetname: {type:String},
-      suburb: {type:String},
-      postcode: {type:String},
-      country: {type:String},
-    }],
-    posted: {type: Boolean, default: false},
-    purchased: {type:Boolean, default: true}
-  }]
-
+    price: {type: Number},
+    postage: {type: Number},
+    available: {type: Boolean},
+    genre: { type: String },
+    author: [{
+      type: Schema.Types.ObjectId,
+      ref: "Book"
+    }]
+  
 });
 
 const Book = mongoose.model("Book", BookSchema);
