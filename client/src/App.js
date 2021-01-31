@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { Loading, NavBar } from "./components";
-import { Profile, Home, Sell } from "./pages";
+import { Profile, Home, Count } from "./pages";
 
 import './App.css';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -19,7 +19,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/sell" component={Sell} />
+        <Route exact path="/count" component={Count} />
       </Switch>
       </Container>
       </div>

@@ -1,5 +1,6 @@
 import Home from "./home";
 import Profile from "./profile";
-import Sell from "./sell"
+import Count from "./count";
 
-export {Home, Profile, Sell };
+
+export {Home, Profile, Count};

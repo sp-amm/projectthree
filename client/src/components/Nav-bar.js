@@ -4,56 +4,54 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./Logout-button";
-import LoginButton from "./Login-button";
+import LoginButton from "./Login-button"; 
 
 //Main Navigation Bar Links 
-const MainNav = () => (
-    <Nav className="mr-auto">
-        <Nav.Link
-        as={RouterNavLink}
-        to="/"
-        exact
-        activeClassName="router-link-exact-active"
-        >
-        Home
-        </Nav.Link>
-        <Nav.Link
-        as={RouterNavLink}
-        to="/profile"
-        exact
-        activeClassName="router-link-exact-active"
-        >
-        Profile
-        </Nav.Link>
-        <Nav.Link
-        as={RouterNavLink}
-        to="/sell"
-        exact
-        activeClassName="router-link-exact-active"
-        >
-        Sell
-        </Nav.Link>
-    </Nav>
-);
 
-//Showing logout button if authenticated & login Button if not.
-const AuthNav = () => {
-    const { isAuthenticated } = useAuth0();
 
-    return(
-        <Nav className="justify-content-end">
-            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-        </Nav>
-    )
-}
 
-const NavBar = () => {
+   const NavBar = () => {
+    const { user, isAuthenticated } = useAuth0();
+    
     return (
         <Navbar bg="light" expand="md">
             <Container>
-                {/* <Navbar.Brand as={RouterNavLink} className="logo" to="/"></Navbar.Brand> */}
-                <MainNav />
-                <AuthNav />
+            
+                <Nav className="mr-auto">
+                    <Nav.Link
+                    as={RouterNavLink}
+                    to="/"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    >
+                    Home
+                    </Nav.Link>
+                    <Nav.Link
+                    as={RouterNavLink}
+                    to="/profile"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    >
+                    Profile
+                    </Nav.Link>
+                    <Nav.Link
+                    as={RouterNavLink}
+                    to="/sell"
+                    exact
+                    activeClassName="router-link-exact-active"
+                    >
+                    Kick Counter
+                    </Nav.Link>
+                </Nav>
+            
+
+            {/* //Showing logout button if authenticated and login Button if not. */}
+           
+                <Nav className="justify-content-end">
+                    { isAuthenticated ? <a href="/" >{user.name}</a> : null }
+                    {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+                </Nav>
+                
             </Container>
         </Navbar>
     )

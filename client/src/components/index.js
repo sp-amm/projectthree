@@ -1,9 +1,12 @@
-import Content from "./Content";
-//import Footer from "./footer";
-//import Hero from "./hero";
+import CountContainer from "./CountContainer";
 import Loading from "./Loading";
 import NavBar from "./Nav-bar";
-//import Highlight from "./highlight";
+import LoginButton from "./Login-button"
+import Header from "./Header";
+import DataContainer from "./DataContainer";
 
 
-export { Content, Loading, NavBar};
+
+export { CountContainer, Loading, NavBar, LoginButton, 
+    Header, DataContainer,
+};
