@@ -36,7 +36,7 @@ import LoginButton from "./Login-button";
                     </Nav.Link>
                     <Nav.Link
                     as={RouterNavLink}
-                    to="/sell"
+                    to="/count"
                     exact
                     activeClassName="router-link-exact-active"
                     >
