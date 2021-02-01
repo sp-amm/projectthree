@@ -1,25 +1,16 @@
-/* import axios from "axios";
-
-const booksAPIKey = AIzaSyBVjcKSp-FhWhHxaTz0XGk5vMNNlpH7fK8;
-const searchTerms = 
+import axios from "axios";
 
 export default {
-    searchBooksByName: function(book) {
-        return new Promise((resolve, reject) => {
-            axios.get("https://www.googleapis.com/books/v1/volumes?q=" + searchTerms + "?key=" + booksAPIKey)
-                .then( res => {
-                    const bookSearchResult = res.data;
-                    const results = bookSearchResult.map(bookSearchResult => {
-                        return {
-                            title: bookSearchResult.volumeInfo.title,
-                            author: bookSearchResult.volumeInfo.authors[0],
-
-                        };
-                    });
-                    resolve(results)
-                    console.log(results);
-                })
-                .catch(err => reject(err));
-        });
-    }
-}; */
+  // Gets all posts
+  getPosts: function() {
+    return axios.get("/api/count");
+  },
+  // Gets the post with the given id
+  getPost: function(id) {
+    return axios.get("/api/count/" + id);
+  },
+  // Saves a post to the database
+  savePost: function(countData) {
+    return axios.post("/api/posts", countData);
+  }
+};

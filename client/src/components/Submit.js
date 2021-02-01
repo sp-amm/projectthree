@@ -1,9 +1,23 @@
 import React from 'react';
+import API from "../../utils/API";
 
-const Submit = () => {
+const Submit = (props) => {
+    
+        //submitting data to back end
+        handleSubmit = (e) => {
+            e.preventDefault();
+            API.savePost({
+              moves: this.state.moves
+            })
+              .then(result => {
+                console.log({moves})
+              })
+              .catch(err => console.log(err));
+        };
+    
     return(
     <div>
-    <h1>Submit button</h1>
+    <button className="btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>
     </div>
     )
 };

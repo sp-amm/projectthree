@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
-import NavBar from '../components/Nav-bar';
 import LoginButton from '../components/Login-button'; 
+import LoginForm from '../components/LoginForm'
 
 const Home = () => (
  
   <Fragment>
     <hr />
-    <LoginButton />
+    <LoginForm />
   </Fragment>
 );
 

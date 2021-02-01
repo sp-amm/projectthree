@@ -3,39 +3,30 @@ const db = require("../models");
 
 // This file empties the Posts collection and inserts the books below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/bookdb");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactcms");
 
 const bookSeed = [
   {
-    id: "72",
-    title: "Pride and Prejudice",
-    datepublished: "1992",
-    publisher: "Wordsworth",
-    ISBN: "9781853260001", 
-    blurb: "Blurb Blurb Blurb",
-    coverURL: "https://i.pinimg.com/564x/82/eb/cf/82ebcf8435a2d403014064eee495d8f2.jpg",
-    condition: 2,
-    price: 3.00,
-    postage: 4.99,
-    available: true,
-    genre: ["Historical Romance", "Drama", "Satire", "Fiction"],
-    author: "Jane Austen",
+    title: "Hello World",
+    author: "admin",
+    body:
+      "Welcome to your first post! To create posts create a title and body. Don't forget to include your screen name!",
+    date: new Date(Date.now())
   },
   {
-    id: "78",
-    title: "Test",
-    datepublished: "1800",
-    publisher: "Test",
-    ISBN: "3223492384792834", 
-    blurb: "Blurb Blurb Blurb",
-    coverURL: "Nil",
-    condition: 3,
-    price: 2.50,
-    postage: 4.99,
-    available: true,
-    genre: ["Test", "Comedy", "Satire", "Non-Fiction"],
-    author: "Test",
+    title: "The Second Post",
+    author: "admin",
+    body:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    date: new Date(Date.now())
   },
+  {
+    title: "Another One",
+    author: "admin",
+    body:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    date: new Date(Date.now())
+  }
 ];
 
 db.Post.remove({})
