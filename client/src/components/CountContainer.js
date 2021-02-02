@@ -1,27 +1,24 @@
 import React, { useState, useRef } from 'react';
 import './style.css'
-import Submit from './Submit';
 import Countdown, { zeroPad } from 'react-countdown';
 import { Button } from "react-bootstrap";
 import API from "../utils/API";
-
-
-
- // custom rendering for the react-countdown component from npm react-countdown       
-const renderer = ({ minutes, seconds, completed }) => {
-    return((completed) ? <Submit /> 
-    : <span>{zeroPad(minutes, 2)}:{zeroPad(seconds, 2)}</span>)
-}
-    
+ 
  
 const CountContainer = (props) => {
 
     //set state for the counter
-    const [moves, setMoves] = useState(0);
+    const [count, setCount] = useState(0);
     
     //set state for the user
    /*  const [user, setUser] = useState() */
     
+    // custom rendering for the react-countdown component from npm react-countdown       
+    const renderer = ({ minutes, seconds, completed }) => {
+    return((completed) ? <Button className="submitbtn" type="submit" onClick={handleSubmit}>Submit</Button> 
+    : <span>{zeroPad(minutes, 2)}:{zeroPad(seconds, 2)}</span>)
+}
+      
    //enable start button for timer
     const ref = useRef()
     const handleStart = (e) => {
@@ -29,19 +26,19 @@ const CountContainer = (props) => {
     };
     const handlePause = (e) => {
         ref.current?.pause();
-    }
+    };
 
-    //submitting data to back end
-/*     handleSubmit = (e) => {
+    //Submit count data
+    const handleSubmit = (e) => {
         e.preventDefault();
         API.savePost({
-          moves: this.state.moves
+          count: count
         })
           .then(result => {
-            console.log({moves})
+            console.log(props.count)
           })
           .catch(err => console.log(err));
-    }; */
+    }; 
 
     return(
         <div>
@@ -53,10 +50,10 @@ const CountContainer = (props) => {
                 ref={ref}/>
             </div>
             <div>
-                <Button className="countbtn" onClick={()=> setMoves(moves+1)}></Button>
+                <Button className="countbtn" onClick={()=> setCount(count+1)}></Button>
             </div>    
             <div>
-                <span>Baby's moved {moves} times.</span>
+                <span>Baby's moved {count} times.</span>
             </div>
             <Button onClick={handleStart}>Start</Button>
             <Button onClick={handlePause}>Pause</Button>

@@ -10,7 +10,7 @@ const LoginForm = () => {
     const [loginPassword, setLoginPassword] = useState("");
 
     const register = () => {
-        (axios({
+        (axios.post({
             method: "post",
             data: {
                 email: registerEmail,
