@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import DataContainer from "../components/DataContainer";
-import NavBar from '../components/Nav-bar';
 
 export const Profile = () => {
+    
+
     return(
         <div>
         <Container className="mb-5">

@@ -4,13 +4,13 @@ import './style.css'
 import Countdown, { zeroPad } from 'react-countdown';
 import { Button } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
-//import API from "../utils/API";
+
  
  
 const CountContainer = (props) => {
     const { user, isAuthenticated } = useAuth0();
     const loggedInUser = {user};
-    const UserEmail = user.name;
+    const UserEmail = loggedInUser.user.name;
     console.log(UserEmail);
 
     //set state for the counter
@@ -21,13 +21,14 @@ const CountContainer = (props) => {
     
     // custom rendering for the react-countdown component from npm react-countdown       
     const renderer = ({ minutes, seconds, completed }) => {
-    return((completed) ? <Button className="submitbtnstyle" type="submit"  onClick={handleSubmit} >Click to submit your count.</Button> 
+    return((completed) ? <Button className="submitbtnstyle" type="submit" onClick={handleSubmit} >Click to submit your count.</Button> 
     : <span>{zeroPad(minutes, 2)}:{zeroPad(seconds, 2)}</span>)
 }
 
     //Submit count data
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (isAuthenticated){
         axios.post("api/user/", {
           email: UserEmail,
           count: count,
@@ -37,8 +38,9 @@ const CountContainer = (props) => {
             console.log(response)
           })
           .catch(err => console.log(err));
+        } else {return (alert("You need to login."))}
 };  
-    
+      
 
    //enable start button for timer
     const ref = useRef()
@@ -48,9 +50,7 @@ const CountContainer = (props) => {
     const handlePause = (e) => {
         ref.current?.pause();
     };
-    const handleReset = (e) => {
-        ref.current?.start();
-    }
+
 
     return(
         <div>
