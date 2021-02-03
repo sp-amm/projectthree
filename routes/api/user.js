@@ -9,17 +9,17 @@ router
   .get(usersController.findAll)
   .post(usersController.create);
 
-//Matches with "/api/user/email"
+//Matches with "/api/user/:email"
 router
-  .route("/email")
+  .route("/:email")
   .get(usersController.find);
 
   // Matches with "/api/user/:id"
-router
+/* router
   .route("/:id")
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
-
+ */
 
 module.exports = router;

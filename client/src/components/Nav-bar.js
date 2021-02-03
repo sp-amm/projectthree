@@ -16,7 +16,6 @@ import LoginButton from "./Login-button";
     return (
         <Navbar bg="light" expand="md">
             <Container>
-            
                 <Nav className="mr-auto">
                     <Nav.Link
                     as={RouterNavLink}

@@ -35,7 +35,7 @@ const CountContainer = (props) => {
           date: Date.now()
         })
           .then(function(response) {
-            console.log(response)
+            console.log(response);
           })
           .catch(err => console.log(err));
         } else {return (alert("You need to login."))}

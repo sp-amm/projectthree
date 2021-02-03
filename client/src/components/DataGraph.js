@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {setState} from 'react';
 import { Line } from 'react-chartjs-2'
 import './style.css'
 
@@ -8,16 +8,18 @@ import './style.css'
 class DataGraph extends React.Component {
         constructor(props){
             super(props); 
-            console.log(this.props)
-        }; 
-/*:{
+            console.log(this.props);
+       
+
+/*               setState = {data:{
                 labels: ["1", "2", "3"],
                 datasets: [{
                     label: "Movement",
                     data: [14, 34, 26]
                 }]
-            }} */
-    
+            }};
+           */
+    };  
 
         setGradientColor = (canvas, color) => {
             const ctx = canvas.getContext('2d')
@@ -28,9 +30,10 @@ class DataGraph extends React.Component {
         }
 
         getChartData = canvas => {
-            const data= this.props.data;
-            console.log=("From Datagraph:" + data);
+            const data= this.props.data.data;
+            console.log("From Datagraph:" + JSON.stringify(data));
             if(data.datasets){
+                console.log(data.datasets)
                 let colors = ["rgba(255, 0, 255, 0.75)", "rgba(255, 0, 255, 0.75)"]
                 data.datasets.forEach((set, i) => {
                     set.backgroundColor = this.setGradientColor(canvas, colors[i]);

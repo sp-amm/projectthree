@@ -7,13 +7,16 @@ import { Button } from "react-bootstrap";
 const LoginForm = () => {
 
     const { loginWithRedirect } = useAuth0(); 
+    
     return(
+        <div className="vertical-center">
         <Button
         onClick={() =>  loginWithRedirect()  } 
         id="qsLoginBtn"
         variant="primary"
         className="btn-margin biglogin" 
         >Log In or Register</Button>
+        </div>
     );
 };
 

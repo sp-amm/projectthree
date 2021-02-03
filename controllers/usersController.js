@@ -5,11 +5,9 @@ const db = require("../models");
 module.exports = {
 //find method finds by email to return users exercises for data page  
 find: function(req, res) {
-    db.User.find({email: req.params.email}).exec()
+    db.User.find({email: req.params.email})
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err), 
-        console.log("error at controller")
-      );
+      .catch(err => console.log(err));
   },
   create: function(req, res) {
     db.User.create(req.body)
