@@ -6,13 +6,15 @@ class Count extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      date: Date.now() + 900000
+      date: Date.now() + 5000
     }
   }
   
   render(){
   return (
+  <div>
   <CountContainer date={ this.state.date }/>
+  </div>
   )
   };
 };

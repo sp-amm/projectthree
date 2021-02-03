@@ -48,7 +48,7 @@ import LoginButton from "./Login-button";
             {/* //Showing logout button if authenticated and login Button if not. */}
            
                 <Nav className="justify-content-end">
-                    { isAuthenticated ? <a href="/" >{user.name}</a> : null }
+                    { isAuthenticated ? <a href="/count" >{user.name}</a> : null }
                     {isAuthenticated ? <LogoutButton /> : <LoginButton />}
                 </Nav>
                 

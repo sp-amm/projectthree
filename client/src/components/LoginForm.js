@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
-import { Button, Form } from "react-bootstrap";
-import axios from 'axios';
+import React/*,  { useState } */ from 'react';
+//import { Button, Form } from "react-bootstrap";
+//import axios from 'axios';
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button } from "react-bootstrap";
 
 const LoginForm = () => {
-    
-    const [registerEmail, setRegisterEmail] = useState("");
+
+    const { loginWithRedirect } = useAuth0(); 
+    return(
+        <Button
+        onClick={() =>  loginWithRedirect()  } 
+        id="qsLoginBtn"
+        variant="primary"
+        className="btn-margin biglogin" 
+        >Log In or Register</Button>
+    );
+};
+
+    /* const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
@@ -84,8 +97,8 @@ const LoginForm = () => {
             </Button>
        
         </form>
-    );
-};
+    ); */
+
 
 export default LoginForm;
 

@@ -3,6 +3,7 @@ import DataTable from './DataTable';
 import DataGraph from './DataGraph';
 
 const DataContainer = () => {
+    
     return(
         <div>
             <DataTable />

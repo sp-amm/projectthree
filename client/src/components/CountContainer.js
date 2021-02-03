@@ -1,11 +1,17 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import './style.css'
 import Countdown, { zeroPad } from 'react-countdown';
 import { Button } from "react-bootstrap";
-import API from "../utils/API";
+import { useAuth0 } from "@auth0/auth0-react";
+//import API from "../utils/API";
  
  
 const CountContainer = (props) => {
+    const { user, isAuthenticated } = useAuth0();
+    const loggedInUser = {user};
+    const UserEmail = user.name;
+    console.log(UserEmail);
 
     //set state for the counter
     const [count, setCount] = useState(0);
@@ -15,10 +21,25 @@ const CountContainer = (props) => {
     
     // custom rendering for the react-countdown component from npm react-countdown       
     const renderer = ({ minutes, seconds, completed }) => {
-    return((completed) ? <Button className="submitbtn" type="submit" onClick={handleSubmit}>Submit</Button> 
+    return((completed) ? <Button className="submitbtnstyle" type="submit"  onClick={handleSubmit} >Click to submit your count.</Button> 
     : <span>{zeroPad(minutes, 2)}:{zeroPad(seconds, 2)}</span>)
 }
-      
+
+    //Submit count data
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post("api/user/", {
+          email: UserEmail,
+          count: count,
+          date: Date.now()
+        })
+          .then(function(response) {
+            console.log(response)
+          })
+          .catch(err => console.log(err));
+};  
+    
+
    //enable start button for timer
     const ref = useRef()
     const handleStart = (e) => {
@@ -27,18 +48,9 @@ const CountContainer = (props) => {
     const handlePause = (e) => {
         ref.current?.pause();
     };
-
-    //Submit count data
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        API.savePost({
-          count: count
-        })
-          .then(result => {
-            console.log(props.count)
-          })
-          .catch(err => console.log(err));
-    }; 
+    const handleReset = (e) => {
+        ref.current?.start();
+    }
 
     return(
         <div>

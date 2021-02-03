@@ -39,7 +39,14 @@ app.use(routes);
 
 // Connect to the Mongo DB
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/countdb");
-mongoose.connect("mongodb+srv://sam:1234@cluster0.egnhc.mongodb.net/userdb?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://sam:1234@cluster0.egnhc.mongodb.net/userdb?retryWrites=true&w=majority",
+{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
+
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
