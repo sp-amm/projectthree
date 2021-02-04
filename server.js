@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const routes = require("./routes");
 const bodyParser = require("body-parser");
-const User = require("./models/user")
+//const User = require("./models/user")
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -35,9 +35,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-app.use(routes);
 /* app.get("/", function(req, res) {
   res.json(path.join(__dirname, "public/index.html")); */
+  app.use(routes);
+
 
 // Connect to the Mongo DB
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/countdb");
