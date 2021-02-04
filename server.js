@@ -36,10 +36,12 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
+app.get("/", function(req, res) {
+  res.json(path.join(__dirname, "public/index.html"));
 
 // Connect to the Mongo DB
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/countdb");
-mongoose.connect("mongodb+srv://sam:1234@cluster0.egnhc.mongodb.net/userdb?retryWrites=true&w=majority",
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://sam:1234@cluster0.egnhc.mongodb.net/userdb?retryWrites=true&w=majority",
 {
   useNewUrlParser: true,
   useUnifiedTopology: true,
