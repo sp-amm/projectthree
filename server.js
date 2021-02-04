@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors');
-const passport = require('passport');
-const passportLocal = require('passport-local').Strategy;
+//const cors = require('cors');
+//const passport = require('passport');
+//const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcryptjs');
-const session = require('express-session');
+//const bcrypt = require('bcryptjs');
+//const session = require('express-session');
 const routes = require("./routes");
 const bodyParser = require("body-parser");
 //const User = require("./models/user")
@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 8000;
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(bodyParser.json());
+/* app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors({
   origin: "http://localhost:3000", //location of react app
@@ -27,7 +27,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
-app.use(cookieParser("secretCode"))
+app.use(cookieParser("secretCode")) */
 
 
 // Serve up static assets (usually on heroku)
