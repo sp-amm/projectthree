@@ -9,7 +9,7 @@ const LoginForm = () => {
     const { loginWithRedirect } = useAuth0(); 
     
     return(
-        <div className="vertical-center">
+        <div /* className="vertical-center" */>
         <Button
         onClick={() =>  loginWithRedirect()  } 
         id="qsLoginBtn"

@@ -8,26 +8,19 @@ const DataContainer = () => {
     
     //setting state to pass to child
     //const [email, setEmail] = useState("");
-    const [userData, setData] = useState({});
+    const [userData, setData] = useState(null);
 
     //Retreiving user email from Auth0
     const { user, isAuthenticated } = useAuth0();
     const loggedInUser = {user};
     const loggedEmail = loggedInUser.user.name;
-   //console.log(loggedEmail);
+    console.log(loggedEmail);
     
     //vriables to store data from axios call
     let statelabels = [];
     let statedatasets = [];
     let statedata = {};
 
-/*     let promise = new Promise(function(resolve, reject) {
-        console.log('Test 1');
-      });
-      // resolve runs the first function in .then
-      promise.then(function(response){
-       console.log('Test 2');
-      }); */
 
     //calling for user data to set state for use
     function fetchData() {
@@ -63,14 +56,19 @@ const DataContainer = () => {
     //useEffect to stop infinite loop with rerender and axios call
       useEffect(() =>{
             fetchData();
-            console.log("useEffect log" + userData) 
+            console.log("useEffect log" + JSON.stringify(userData)) 
     }, []) 
     
 
     return(
         <div>
             <DataTable />
+            { 
+           userData ? 
             <DataGraph /* email={email} */ data={userData}/>
+            :
+            <> </>
+            }
         </div>
     )
 }
