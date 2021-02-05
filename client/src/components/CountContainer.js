@@ -9,13 +9,19 @@ import { useHistory } from "react-router-dom";
  
  
 const CountContainer = (props) => {
-    const { user, isAuthenticated } = useAuth0();
-    const loggedInUser = {user};
-    const UserEmail = loggedInUser.user.name;
-    console.log(UserEmail);
-
+    
     //set state for the counter
     const [count, setCount] = useState(0);
+    
+
+    const { user, isAuthenticated } = useAuth0();
+    if (isAuthenticated===false){
+        window.location.href = "/";
+        alert("You need to login to access this page.");}
+    const loggedInUser = {user};
+    const UserEmail = loggedInUser.user.name;
+    if (UserEmail===undefined)
+    console.log(UserEmail);
     
     //set state for the user
    /*  const [user, setUser] = useState() */

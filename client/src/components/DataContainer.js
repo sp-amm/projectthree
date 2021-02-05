@@ -12,6 +12,9 @@ const DataContainer = () => {
 
     //Retreiving user email from Auth0
     const { user, isAuthenticated } = useAuth0();
+    if (isAuthenticated===false){
+        window.location.href = "/";
+        alert("You need to login to access this page.");}
     const loggedInUser = {user};
     const loggedEmail = loggedInUser.user.name;
     console.log(loggedEmail);
