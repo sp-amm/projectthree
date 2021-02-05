@@ -4,6 +4,7 @@ import './style.css'
 import Countdown, { zeroPad } from 'react-countdown';
 import { Button } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from "react-router-dom";
 
  
  
@@ -19,6 +20,13 @@ const CountContainer = (props) => {
     //set state for the user
    /*  const [user, setUser] = useState() */
     
+    //set redirect function when submit button clicked - be called in handlesubmit credit to aravind_reddy at https://stackoverflow.com/questions/50644976/react-button-onclick-redirect-page.
+    const history = useHistory();    
+    const routeChange = () => {
+        let path = '/profile';
+        history.push(path);
+    }
+
     // custom rendering for the react-countdown component from npm react-countdown       
     const renderer = ({ minutes, seconds, completed }) => {
     return((completed) ? <Button className="submitbtnstyle" type="submit" onClick={handleSubmit} >Click to submit your count.</Button> 
@@ -37,6 +45,7 @@ const CountContainer = (props) => {
           .then(function(response) {
             console.log(response);
           })
+          .then(routeChange())
           .catch(err => console.log(err));
         } else {return (alert("You need to login."))}
 };  
@@ -50,7 +59,15 @@ const CountContainer = (props) => {
     const handlePause = (e) => {
         ref.current?.pause();
     };
+    const handleReset = (e) => {
+        window.location.reload();
+    }
 
+    //function to disable button when timer completed
+    const disablebtn = ({ completed }) => {
+        return((completed) ? document.getElementById("counterbtn").disabled = true : 
+        document.getElementById("counterbtn").disabled = false
+        )};
 
     return(
         <div>
@@ -62,14 +79,14 @@ const CountContainer = (props) => {
                 ref={ref}/>
             </div>
             <div>
-                <Button className="countbtn" onClick={()=> setCount(count+1)}></Button>
+                <Button id="counterbtn" className="countbtn" disablebtn={disablebtn} onClick={()=> setCount(count+1)}></Button>
             </div>    
             <div>
                 <span>Baby's moved {count} times.</span>
             </div>
             <Button onClick={handleStart}>Start</Button>
             <Button onClick={handlePause}>Pause</Button>
-            <Button>Restart</Button>
+            <Button onClick={handleReset}>Restart</Button>
         </div>
     )
 }

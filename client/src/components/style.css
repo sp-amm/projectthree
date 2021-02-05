@@ -37,8 +37,14 @@ button {
     width: 160px;
     height: 60px;
     position:relative;
+}
 
-
+.jumbotron {
+     background-image: url(../images/yellow.jpg);
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;  
 }
 
 .vertical-center {
