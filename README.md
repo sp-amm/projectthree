@@ -8,7 +8,7 @@ README.md
 A MERN stack application to assist women to track baby's movement through pregnancy. 
 
 ## Website image 
-<img src=images/home.JPG><img src=images/count.JPG><img src=images/stats.JPG>
+<img src=img/home.JPG><img src=img/count.JPG><img src=img/stats.JPG>
 
 ## Table of Contents:
 
